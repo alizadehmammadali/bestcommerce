@@ -1,0 +1,51 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'az.ibar'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+bootJar {
+    enabled = true
+    archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:3.0.1'
+    implementation 'org.springframework.cloud:spring-cloud-starter-feign:1.4.7.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    compile('org.springframework.cloud:spring-cloud-starter-openfeign:2.2.6.RELEASE')
+    compile 'de.mkammerer:argon2-jvm:2.7'
+    runtimeOnly 'org.postgresql:postgresql'
+
+    //lombok
+    compileOnly('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+
+    //mapstruct
+    compile 'org.mapstruct:mapstruct:1.3.0.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.3.0.Final'
+
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.1.0'
+
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}

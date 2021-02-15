@@ -1,0 +1,35 @@
+server:
+  port: 8004
+
+
+
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  application:
+    name: bc-ms-notification
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ibarchallange
+    password: Password5555!
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+  kafka:
+    topic:
+      name: bestCommerceTopic
+    producer:
+      bootstrap-servers: ${HOST_IP:localhost}:9092
+      properties:
+        retry.backoff.ms: 1000
+    admin:
+      properties:
+        bootstrap.servers: ${HOST_IP:localhost}:9092
+    consumer:
+      bootstrap-servers: ${HOST_IP:localhost}:9092
+      group-id: notification-group-id

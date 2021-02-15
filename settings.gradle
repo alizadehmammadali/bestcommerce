@@ -1,0 +1,6 @@
+rootProject.name = 'best-commerce'
+include 'bc-eureka-service-discovery'
+include 'bc-ms-api-gateway'
+include 'bc-ms-user'
+include 'bc-ms-product'
+include 'bc-ms-notification'

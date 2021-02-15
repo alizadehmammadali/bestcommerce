@@ -1,0 +1,59 @@
+server:
+  port: 8001
+
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  application:
+    name: bc-ms-api-gateway
+    default-access-token-validity: 43200000
+    remember-me-access-token-validity: 604800000
+    secret-key: 8HaagcbM7qhUgaxA
+    token-header: Authorization
+    token-header-prefix: Bearer
+  datasource:
+    url: jdbc:postgresql://${HOST_IP:localhost}:5432/${DB_NAME:bestcommerce}?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:password}
+    tomcat:
+      initial-size: 5
+      max-wait: 60000
+      max-active: 5
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://${HOST_IP:localhost}:8761/eureka
+
+ribbon:
+  eureka:
+    enabled: false
+
+zuul:
+  sensitiveHeaders:
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  routes:
+    bc-ms-user:
+      path: /users/**
+      url: http://${HOST_IP:localhost}:8002/users/
+    bc-ms-product:
+      path: /products/**
+      url: http://${HOST_IP:localhost}:8003/products/
+
+bc-ms-user:
+  ribbon:
+    listOfServers: http://${HOST_IP:localhost}:8002
+
+bc-ms-product:
+  ribbon:
+    listOfServers: http://${HOST_IP:localhost}:8003
