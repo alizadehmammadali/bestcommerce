@@ -24,7 +24,7 @@ Before the run the application docker-compose we should export variables which a
 ```shell
 ./gradlew build
 
-export HOST_IP="$(ip route get 8.8.8.8 | head -1 | awk '{print $7}') 
+export HOST_IP=$(ip route get 8.8.8.8 | head -1 | awk '{print $7}') 
 
 export DB_USERNAME=yourdbuser
 
