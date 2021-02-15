@@ -17,7 +17,7 @@
   - List api with pagination
 
 * bc-ms-notification
-  - Produces and Consumes notification and sends email to merchant users 
+  - Produces and Consumes notification and sends email to merchant users with Kafka MQ
   
 #### RUN  
 Before the run the application docker-compose we should export variables which are used in containers </br>
