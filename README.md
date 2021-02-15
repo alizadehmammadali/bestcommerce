@@ -20,12 +20,11 @@
   - Produces and Consumes notification and sends email to merchant users 
   
 #### RUN  
-Before the run the application we should export variables </br>
-Finding host ip: [Link](https://linuxize.com/post/how-to-set-and-list-environment-variables-in-linux/)
+Before the run the application docker-compose we should export variables which are used in containers </br>
 ```shell
 ./gradlew build
 
-export HOST_IP='YOUR HOST IP' 
+export HOST_IP="$(ip route get 8.8.8.8 | head -1 | awk '{print $7}') 
 
 export DB_USERNAME=yourdbuser
 
