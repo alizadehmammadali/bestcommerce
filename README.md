@@ -1,6 +1,6 @@
 ## Documentation
 
-### Application consist of 4 main parts:
+### Application consist of 5 main parts:
 
 * bc-eureka-service-discovery : Service registry 
 * bc-ms-api-gateway <br/>
