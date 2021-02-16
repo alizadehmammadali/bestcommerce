@@ -3,13 +3,19 @@ package az.ibar.bcmsproduct.model;
 import az.ibar.bcmsproduct.model.enums.DeliveryOption;
 import az.ibar.bcmsproduct.model.enums.PaymentOption;
 import az.ibar.bcmsproduct.model.enums.ProductCategory;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductDTO {
 
     private Long id;

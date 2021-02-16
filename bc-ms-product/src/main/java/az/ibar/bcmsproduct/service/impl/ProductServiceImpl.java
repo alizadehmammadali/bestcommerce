@@ -20,12 +20,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
+    private static final long MINIMUM_INVENTORY_SIZE = 5;
+
     private final ProductRepository productRepository;
 
     @Override
     public List<ProductDTO> getList(Long userId, Integer pageIndex, Integer pageSize, SortBy sortBy) {
         Pageable pageable = PageRequest.of(pageIndex, pageSize, Sort.by(sortBy.getFieldName()));
-        Page<ProductEntity> pageData = productRepository.findProductEntitiesByUserIdAndInventoryIsGreaterThanEqual(userId, 5L, pageable);
+        Page<ProductEntity> pageData = productRepository.findProductEntitiesByUserIdAndInventoryIsGreaterThanEqual(userId, MINIMUM_INVENTORY_SIZE, pageable);
         return pageData.getContent()
                 .stream()
                 .map(ProductMapper.INSTANCE::toDTO)
