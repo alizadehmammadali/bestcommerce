@@ -10,17 +10,18 @@
 
 * bc-ms-user (Merchant)
   - User registration
-  - Verification -> When user register it sends verification email via <b>bc-ms-notification</b> service. If user accept and clicks the link in the email, verification completes successfully.
+  - Verification -> When user register it sends verification email via <b>bc-ms-notification</b> service. 
+    If user accept and clicks the link in the email, verification completes successfully. Only verified users can use closed apis
   - Get logged user info details
 * bc-ms-product
   - Create product
   - List api with pagination
 
 * bc-ms-notification
-  - Produces and Consumes notification and sends email to merchant users with Kafka MQ
+  - Produces and Consumes notification and sends email(Gmail SMTP) to merchant users with Apache Kafka
   
 #### RUN  
-Before the run the docker-compose command we should export variables which are used in containers </br>
+Before run the docker-compose command we should export variables which are used in containers </br>
 ```shell
 ./gradlew build
 
@@ -34,4 +35,5 @@ export DB_PASSWORD=yourdbpassword
 
 docker-compose up -d
 ```
+Note: Because of time limit some tests are not written :(
 
